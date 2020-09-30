@@ -18,6 +18,7 @@ class Log extends Model
      */
     protected $fillable = [
         'user_id',
+        'query',
         'datetime'
     ];
 

@@ -19,10 +19,11 @@ class Logger
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        if ($user) {
+        $user = $request->user('api');
+        if ($user && $request->has('query')) {
             Log::create([
                 'user_id' => $user->id,
+                'query' => $request->input('query'),
                 'datetime' => Carbon::now()->getTimestamp()
             ]);
         }

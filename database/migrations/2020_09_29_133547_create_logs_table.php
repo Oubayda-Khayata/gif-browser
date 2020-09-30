@@ -16,6 +16,7 @@ class CreateLogsTable extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->string('query')->nullable(false);
             $table->bigInteger('datetime')->nullable(false);
             $table->softDeletes();
             $table->timestamps();
