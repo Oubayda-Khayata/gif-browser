@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('api_key_auth')->group(function () {
+    Route::post('logout', 'UserController@logout')->middleware('auth:api');
+    Route::post('login', 'UserController@login');
+    Route::post('signup', 'UserController@signup');
+
+    Route::get('search', 'GIFEngineController@search')->middleware('logger');
+    Route::get('trending', 'GIFEngineController@getTrending');
+    Route::get('get-gif/{id}', 'GIFEngineController@getGIFById');
 });
