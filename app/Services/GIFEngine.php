@@ -47,10 +47,20 @@ class GIFEngine
             $gifsData[] = $gifObj;
         }
 
+        $meta = new \stdClass;
+        $pagination = new \stdClass;
+
+        $meta->status = $response['meta']['status'];
+        $meta->msg = $response['meta']['msg'];
+
+        $pagination->total_count = $response['pagination']['total_count'];
+        $pagination->count = $response['pagination']['count'];
+        $pagination->offset = $response['pagination']['offset'];
+
         $result = new \stdClass;
         $result->data = $gifsData;
-        $result->meta = $response['meta'];
-        $result->pagination = $response['pagination'];
+        $result->meta = $meta;
+        $result->pagination = $pagination;
 
         return $result;
     }
@@ -86,10 +96,20 @@ class GIFEngine
             $gifsData[] = $gifObj;
         }
 
+        $meta = new \stdClass;
+        $pagination = new \stdClass;
+
+        $meta->status = $response['meta']['status'];
+        $meta->msg = $response['meta']['msg'];
+
+        $pagination->total_count = $response['pagination']['total_count'];
+        $pagination->count = $response['pagination']['count'];
+        $pagination->offset = $response['pagination']['offset'];
+
         $result = new \stdClass;
         $result->data = $gifsData;
-        $result->meta = $response['meta'];
-        $result->pagination = $response['pagination'];
+        $result->meta = $meta;
+        $result->pagination = $pagination;
 
         return $result;
     }
@@ -120,9 +140,15 @@ class GIFEngine
         $gifObj->url = $response['data']['url'];
         $gifObj->image = $response['data']['images']['original_still']['url'];
 
+        $meta = new \stdClass;
+
+        $meta->status = $response['meta']['status'];
+        $meta->msg = $response['meta']['msg'];
+
+
         $result = new \stdClass;
         $result->data = $gifObj;
-        $result->meta = $response['meta'];
+        $result->meta = $meta;
 
         return $result;
     }
